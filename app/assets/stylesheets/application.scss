@@ -1,0 +1,14 @@
+/*
+ *= require_self
+ */
+
+@import 'normalize';
+@import "global.scss";
+@import "schedules.scss";
+@import "welcome.scss";
+@import "tables.scss";
+
+/*@import 'bootstrap';*/
+@import "bootstrap-datepicker";
+@import 'bootstrap-datetimepicker';
+@import 'bootstrap-sprockets';

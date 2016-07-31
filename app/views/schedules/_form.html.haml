@@ -1,0 +1,22 @@
+%link{:rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"}
+= simple_form_for @schedule do |f|
+
+  .input-group
+    = f.input :date, as: :string, label: "Date", input_html: { class: 'date', id: 'date', name: 'date' }
+
+  .input-group
+    = f.input :date, as: :string, label: "Check In", input_html: { class: 'time', id: "checkin", name: "checkin" }
+
+  .input-group
+    = f.input :date, as: :string, label: "Check Out", input_html: { class: 'time', id: "checkout", name: "checkout" }
+
+  %br
+  = f.button :submit
+
+:javascript
+  $(function() {
+
+    $(".time").datetimepicker({format: "LT"});
+    $(".date").datepicker({format: "yyyy-mm-dd", autoclose: true})
+
+  });

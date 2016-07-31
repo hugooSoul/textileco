@@ -1,0 +1,8 @@
+.wrapper_with_padding
+  %h2 Your Check In & Check Out was successfuly recorded
+
+  %p= @schedule.date
+
+  = link_to "Home", schedules_path
+
+  = link_to "Edit", edit_schedule_path(@schedule)

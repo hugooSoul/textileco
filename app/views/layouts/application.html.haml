@@ -1,0 +1,23 @@
+!!!
+%html
+%head
+  %title Textile.Co | Hugo
+  = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+  = javascript_include_tag 'application', 'data-turbolinks-track' => true
+  %link{:rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"}
+  = csrf_meta_tags
+%body
+  %header
+    .header_inner
+      = link_to "Textile.Co", root_path, id: "logo"
+      %nav
+        - if employee_signed_in?
+          = link_to "New Schedule", new_schedule_path
+          = link_to "Sign Out", destroy_employee_session_path, method: :delete
+        - else
+          = link_to "Log In", new_employee_session_path
+
+  %p.notice= notice
+  %p.alert= alert
+
+  = yield
