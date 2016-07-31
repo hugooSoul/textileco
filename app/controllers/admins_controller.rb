@@ -5,8 +5,13 @@ class AdminsController < ApplicationController
     @employees = Employee.all
   end
 
+=begin
   def show
+  end
+=end
 
+  def report
+    @employee = Employee.find(params[:id])
   end
 
 

@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :admins
   resources :schedules
 
+  get 'admins/:id/report' => "admins#report"
 
   authenticated :employee do
     root 'schedules#index', as: "authenticated_root"

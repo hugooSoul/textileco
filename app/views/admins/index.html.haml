@@ -18,4 +18,4 @@
           %td= employee.first_name
           %td= employee.last_name
           %td= employee.email
-          %td
+          %td= link_to "report", "admins/#{employee.id}/report"

@@ -1,0 +1,17 @@
+%link{:rel => "stylesheet", :href => "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"}
+.wrapper_with_padding
+
+  %h2 Report of #{@employee.first_name} #{@employee.last_name}
+
+  .col-md-4
+    .input-group
+      %label From
+      %input.date{:type=>"text"}
+
+  .col-md-4
+    .input-group
+      %label To
+      %input.date{:type=>"text"}
+
+
+=javascript_include_tag 'schedule_report'
