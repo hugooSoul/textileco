@@ -30,7 +30,7 @@ $( document ).ready(function() {
     report();
   });
 
-  $('[data_toggle="optionsReport"] > .btn').click(function() { //'click',
+  $('[data_toggle="optionsReport"] > .btn').click(function() {
     var button = $(this).find("input")[0];
     $('#option').val($(button).attr("id"));
     report();

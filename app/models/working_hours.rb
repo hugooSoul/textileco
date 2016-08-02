@@ -1,5 +1,10 @@
 class WorkingHours
 
+  #require 'business_time'
+
+  #BusinessTime::Config.beginning_of_workday = "9:00 am"
+  #BusinessTime::Config.end_of_workday = "6:00 pm"
+
   #http://stackoverflow.com/questions/4027768/calculate-number-of-business-days-between-two-days
   def absence_days startDate, endDate, employeeId
     business_days = []
@@ -24,11 +29,12 @@ class WorkingHours
 
   def assistance_day params
     if params[:startDate] != ""
-      worked_days = Schedule.where("employee_id = ? and DATE(date) >= ? and DATE(date) <= ?",params[:id],params[:startDate], params[:endDate]).order(:date)
+      assits_days = Schedule.where("employee_id = ? and DATE(date) >= ? and DATE(date) <= ?",params[:id],params[:startDate], params[:endDate]).order(:date)
+      #assits_days = assits_days[1]
     else
-      worked_days = Schedule.where("employee_id = ? and DATE(date) = ?",params[:id],params[:startDate]).order(:date)
+      assits_days = Schedule.where("employee_id = ? and DATE(date) = ?",params[:id],params[:startDate]).order(:date)
     end
-    return {:days => worked_days}
+    return {:days => assits_days}
   end
 
   private

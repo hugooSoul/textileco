@@ -1,0 +1,35 @@
+.wrapper_with_padding
+  - if !@working_days.is_a? Array
+    -#= @working_days.to_a
+    %br
+    %table.table.table-bordered
+      %thead
+        %th Date
+        %th Came late?
+        %th Left early?
+
+      %tbody
+        - @working_days[:days].to_a.each do |key|
+          %tr
+            %td= key[:date].strftime("%F")
+            - if key[:date].strftime("%H:%M") >= "10:00" && key[:date].strftime("%H:%M") <= "10:01"
+              %td= key[:date].strftime("%H:%M")
+            - else
+              %td
+            - if key[:date].strftime("%H:%M") >= "16:49" && key[:date].strftime("%H:%M") <= "17:00"
+              %td= key[:date].strftime("%H:%M")
+            - else
+              %td
+
+  - else
+    %br
+    %div{:class=>"alert alert-info text-center", :role=>"alert"} Days that not came to work: #{@working_days.size}
+
+    %table.table.table-bordered
+      %thead
+        %tr
+          %th Date
+      %tbody
+        - @working_days.each do |date|
+          %tr
+            %td= date.strftime("%F")
