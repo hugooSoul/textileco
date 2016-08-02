@@ -24,7 +24,6 @@ class SchedulesController < ApplicationController
       #format.html { render 'index', notice: 'Schedule was successfully stored.' }
       flash[:notice] = "Schedule was successfully saved."
       render 'index'
-      #redirect_to @schedule
     else
       #format.html { render action: "new" }
       render 'new'

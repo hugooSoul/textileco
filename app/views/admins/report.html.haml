@@ -3,15 +3,33 @@
 
   %h2 Report of #{@employee.first_name} #{@employee.last_name}
 
-  .col-md-4
-    .input-group
-      %label From
-      %input.date{:type=>"text"}
+  .row
+    .col-md-4
+      .input-group
+        %label From
+        %input.date{:type=>"text", :id=>"startDate"}
 
-  .col-md-4
+    .col-md-4
+      .input-group
+        %label To
+        %input.date{:type=>"text", :id=>"endDate"}
+
+  .row
+    .btn-group{:data_toggle=>"optionsReport"}
+      %label.btn.btn-success.active
+        %input{:type=>"radio", :name => "options", :id=>"check"}
+          Assistance
+
+      %label.btn.btn-success
+        %input{:type=>"radio", :name => "options", :id=>"absence", :checked=>"true"}
+          Absence
+
+  .row
     .input-group
-      %label To
-      %input.date{:type=>"text"}
+      %input{:type=>"hidden", :value=>@employee.id, :id=>"employeeId", :name=>"employeeId"}
+      %input{:type=>"hidden", :id=>"option", :name=>"option"}
+
+  #tableReport
 
 
 =javascript_include_tag 'schedule_report'

@@ -14,8 +14,9 @@ class AdminsController < ApplicationController
     @employee = Employee.find(params[:id])
   end
 
-
-  private
-
+  def doReport
+    @working_days = Employee.get_report params
+    render layout: false
+  end
 
 end
