@@ -1,7 +1,9 @@
 .wrapper_with_padding
   - if !@working_days.is_a? Array
-    -#= @working_days.to_a
+    -#= @working_days[:days].to_a
     %br
+    -if !@working_days[:days].to_a.any?
+      %div{:class=>"alert alert-info text-center", :role=>"alert"} The user doesnt came to work for those dates
     %table.table.table-bordered
       %thead
         %th Date
@@ -12,11 +14,11 @@
         - @working_days[:days].to_a.each do |key|
           %tr
             %td= key[:date].strftime("%F")
-            - if key[:date].strftime("%H:%M") >= "10:00" && key[:date].strftime("%H:%M") <= "10:01"
+            - if key[:date].strftime("%H:%M") >= "09:30" && key[:date].strftime("%H:%M") <= "10:00"
               %td= key[:date].strftime("%H:%M")
             - else
               %td
-            - if key[:date].strftime("%H:%M") >= "16:49" && key[:date].strftime("%H:%M") <= "17:00"
+            - if key[:date].strftime("%H:%M") >= "17:30" && key[:date].strftime("%H:%M") <= "17:58"
               %td= key[:date].strftime("%H:%M")
             - else
               %td
