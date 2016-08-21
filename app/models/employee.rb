@@ -12,12 +12,26 @@ class Employee < ActiveRecord::Base
   #From To && Employee ID
   def self.get_report params #absence
     if params[:option] == "" || params[:option] == "check"
-      days = WorkingHours.new
-      return days.assistance_day(params)
+      return get_inputs_outputs assistance_day(params)
     else
       days = WorkingHours.new
       return days.absence_days params[:startDate], params[:endDate], params[:id]
     end
+  end
+
+  def self.assistance_day params
+    if params[:startDate] != ""
+      assits_days = Schedule.where("employee_id = ? and DATE(date) >= ? and DATE(date) <= ?",params[:id],params[:startDate], params[:endDate]).order(:date)
+      #assits_days = assits_days[1]
+    else
+      assits_days = Schedule.where("employee_id = ? and DATE(date) = ?",params[:id],params[:startDate]).order(:date)
+    end
+    return assits_days #{:days => assits_days}
+  end
+
+  def self.get_inputs_outputs assits_days
+    check = WorkingHours.new
+    check.get_info_of_day assits_days
   end
 
 

@@ -13,9 +13,10 @@
 
     %tbody
       - @employees.each do |employee|
-        %tr
-          %td= employee.id
-          %td= employee.first_name
-          %td= employee.last_name
-          %td= employee.email
-          %td= link_to "report", "admins/#{employee.id}/report"
+        - unless employee.admin?
+          %tr
+            %td= employee.id
+            %td= employee.first_name
+            %td= employee.last_name
+            %td= employee.email
+            %td= link_to "report", "admins/#{employee.id}/report"

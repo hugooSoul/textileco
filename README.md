@@ -30,12 +30,13 @@ Each user can do different things, as:
 
 ### Schedule
 
-If an Employee came to work after 9:30 AM the system shown that that user came late
-and if the user left the work after 17:30 PM so, the system shown that the user left the office early.
+On the table of the each user there are some information as the day, their check-in & check-out,
+and if the user came late or left the office early.
 
-- If on the table appear an hour in "Came late?" is because the employee came to work after 9:30 AM.
+If an Employee came to work after(>=) 9:30 AM the system shown that that user came late
+and assuming the user have been in the office, and if he/she decide get out after 3:00(>=) PM or before(<=) 5:45PM
+the system gonna show that the user left early.
 
-- If on the table appear an hour in "Left early?" is because the employee left the office after 17:30 PM and before 18:00 PM.
 
 ### Features not completed
 

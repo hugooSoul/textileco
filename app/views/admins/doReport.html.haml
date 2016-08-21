@@ -1,28 +1,31 @@
 .wrapper_with_padding
   - if !@working_days.is_a? Array
-    -#= @working_days[:days].to_a
+    -#= @working_days
     %br
-    -if !@working_days[:days].to_a.any?
+    - if !@working_days.to_a.any?
       %div{:class=>"alert alert-info text-center", :role=>"alert"} The user doesnt came to work for those dates
     %table.table.table-bordered
       %thead
         %th Date
+        %th check-in
+        %th check-out
         %th Came late?
         %th Left early?
 
       %tbody
-        - @working_days[:days].to_a.each do |key|
-          %tr
-            %td= key[:date].strftime("%F")
-            - if key[:date].strftime("%H:%M") >= "09:30" && key[:date].strftime("%H:%M") <= "10:00"
-              %td= key[:date].strftime("%H:%M")
+        - @working_days.each do |key,value|
+          %tr.text-center
+            %td= key
+            %td= value[:check_in].strftime("%H:%M %p")
+            %td= value[:check_out].strftime("%H:%M %p")
+            - unless value[:late].nil?
+              %td{:class=>"danger"}= value[:late]
             - else
               %td
-            - if key[:date].strftime("%H:%M") >= "17:30" && key[:date].strftime("%H:%M") <= "17:58"
-              %td= key[:date].strftime("%H:%M")
-            - else
+            - unless value[:early].nil?
+              %td{:class=>"danger", :role=>"alert"}= value[:early]
+            -else
               %td
-
   - else
     %br
     %div{:class=>"alert alert-info text-center", :role=>"alert"} Days that not came to work: #{@working_days.size}
