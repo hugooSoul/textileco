@@ -20,6 +20,8 @@ gem 'bootstrap3-datetimepicker-rails', '~> 4.17', '>= 4.17.37'
 
 group :development, :test do
   gem 'byebug'
+  gem 'rspec-rails', '~> 3.5', '>= 3.5.1'
+  gem 'capybara'
 end
 
 group :development do
