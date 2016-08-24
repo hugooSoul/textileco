@@ -37,11 +37,7 @@ If an Employee came to work after(>=) 9:30 AM the system shown that that user ca
 and assuming the user have been in the office, and if he/she decide get out after 3:00(>=) PM or before(<=) 5:45PM
 the system gonna show that the user left early.
 
-
-### Features not completed
-
-> Point 3 - Your customer’s employees are complaining that the reported hours for a given period
-> are wrong, so your customer wants to give each of his employees the opportunity to
-> review their current period working hours report 3 days before the paycheck day.
+Each employee has the opportunity to review their Schedule, only 3 days before the payday.
+The are two paydays, the 15th & to the end of the month.
 
 **Hugo!**
