@@ -1,0 +1,28 @@
+.wrapper_with_padding
+
+  -#= @working_time
+
+  - if !flash.empty?
+    #id
+      - flash.each do |key, value|
+        %h3= flash[key]
+
+  - else
+
+    - if !@working_time[:worked_days].to_a.any?
+      %div{:class=>"alert alert-info text-center", :role=>"alert"} The user doesnt came to work for this fortnight
+
+    %br
+
+    %table.table.table-bordered
+      %thead
+        %th Date
+        %th check-in
+        %th check-out
+
+      %tbody
+        - @working_time[:worked_days].each do |key,value|
+          %tr.text-center
+            %td= key
+            %td= value[:check_in].strftime("%H:%M %p")
+            %td= value[:check_out].strftime("%H:%M %p")

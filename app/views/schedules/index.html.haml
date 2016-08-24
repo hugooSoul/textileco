@@ -2,3 +2,5 @@
   #schedules.clearfix
     %h2 Add a Schedule
     %button= link_to "New Schedule", new_schedule_path
+    %p
+    %button= link_to "Review Schedule Here!", "schedules/#{@employee.id}/report"

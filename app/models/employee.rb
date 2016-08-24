@@ -8,6 +8,30 @@ class Employee < ActiveRecord::Base
   validates_presence_of :last_name
   has_many :schedules
 
+  def self.get_employee_review params
+    hash = Hash.new
+    today = Time.now
+    payday_one = 15
+    payday_two = today.end_of_month.day
+    if check_available? payday_one, payday_two
+      hash[:available] = true
+      if today.day < payday_one
+        hash[:startDate] = today - (today.day - 1).days
+        hash[:endDate] = (today - (today.day - 1).days) + 15.days
+      else
+        hash[:startDate] = (today - (today.day - 1).days) + 15.days
+        hash[:endDate] = (today - (today.day - 1).days) + payday_two.days
+      end
+      hash[:id] = params[:id]
+      hash[:option] = "check"
+      hash[:worked_days] = get_report hash
+      return hash
+    else
+      hash[:available] = false
+      return hash
+    end
+  end
+
   #getting the days of the employee abscence into a range of days
   #From To && Employee ID
   def self.get_report params #absence
@@ -34,5 +58,15 @@ class Employee < ActiveRecord::Base
     check.get_info_of_day assits_days
   end
 
+  private
+
+  def self.check_available? dayOne, dayTwo
+    today = Time.now
+    if !(dayOne - today.day == 3 || dayTwo - today.day == 3)
+      return false
+    else
+      return true
+    end
+  end
 
 end

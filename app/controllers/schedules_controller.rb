@@ -5,6 +5,19 @@ class SchedulesController < ApplicationController
 
   def index
     #@schedules = Schedule.where(user_id: current_employee).order("DESC")
+    @employee = current_employee
+  end
+
+  def report
+    if params[:id]
+      @working_time = Employee.get_employee_review params
+      if !@working_time[:available]
+        flash[:message] = "You havent't permission to review your Schedule, only available three days before the paycheck day."
+        render 'report'
+      end
+    else
+      render 'index'
+    end
   end
 
   def show
@@ -23,9 +36,9 @@ class SchedulesController < ApplicationController
     if worktime1.save && worktime2.save
       #format.html { render 'index', notice: 'Schedule was successfully stored.' }
       flash[:notice] = "Schedule was successfully saved."
-      render 'index'
+      #render 'index'
+      redirect_to schedules_path
     else
-      #format.html { render action: "new" }
       render 'new'
     end
   end
