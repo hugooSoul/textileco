@@ -40,4 +40,9 @@ the system gonna show that the user left early.
 Each employee has the opportunity to review their Schedule, only 3 days before the payday.
 The are two paydays, the 15th & to the end of the month.
 
+### TDD
+
+Rspec, capybara & rack_session_access gem's added.
+I haven't experience with this feature, so, I just added an scrip to review the login of an employee.
+
 **Hugo!**
