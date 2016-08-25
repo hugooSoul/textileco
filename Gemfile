@@ -22,6 +22,7 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails', '~> 3.5', '>= 3.5.1'
   gem 'capybara'
+  gem 'rack_session_access'
 end
 
 group :development do
