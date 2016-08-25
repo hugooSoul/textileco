@@ -12,7 +12,7 @@ class SchedulesController < ApplicationController
     if params[:id]
       @working_time = Employee.get_employee_review params
       if !@working_time[:available]
-        flash[:message] = "You havent't permission to review your Schedule, only available three days before the paycheck day."
+        flash[:message] = "You haven't permission to review your Schedule, only available three days before the paycheck day."
         render 'report'
       end
     else

@@ -10,17 +10,21 @@ class Employee < ActiveRecord::Base
 
   def self.get_employee_review params
     hash = Hash.new
-    today = Time.now
+    today = DateTime.now.to_date
+    #simulation of first payday
+    #today = today - (today.day - 12).days
     payday_one = 15
     payday_two = today.end_of_month.day
+    puts today.end_of_month.day
     if check_available? payday_one, payday_two
       hash[:available] = true
       if today.day < payday_one
-        hash[:startDate] = today - (today.day - 1).days
-        hash[:endDate] = (today - (today.day - 1).days) + 15.days
+        hash[:startDate] = today.beginning_of_month
+        hash[:endDate] = today.beginning_of_month + 14.day
+        #(today - (today.day - 1).days) + 15.days
       else
         hash[:startDate] = (today - (today.day - 1).days) + 15.days
-        hash[:endDate] = (today - (today.day - 1).days) + payday_two.days
+        hash[:endDate] = ((today - (today.day - 1).days) + 31.day) - 1.day #payday_two.day
       end
       hash[:id] = params[:id]
       hash[:option] = "check"
@@ -61,7 +65,9 @@ class Employee < ActiveRecord::Base
   private
 
   def self.check_available? dayOne, dayTwo
-    today = Time.now
+    today = Time.now.beginning_of_day
+    #simulation of first payday
+    #today = today - (today.day - 12).days
     if !(dayOne - today.day == 3 || dayTwo - today.day == 3)
       return false
     else
