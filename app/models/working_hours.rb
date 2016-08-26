@@ -67,12 +67,15 @@ class WorkingHours
   end
 
   def return_info hash, check_in_hour, check_out_hour
+    late = "09:30"
+    earlyOne = "15:00"
+    earlyTwo = "17:45"
     came_late = check_in_hour.strftime("%H:%M")
-    if came_late >= "09:30"
+    if came_late >= late
       late_message = "came late!"
     end
     left_early = check_out_hour.strftime("%H:%M")
-    if left_early >= "15:00" && left_early <= "17:45"
+    if left_early >= earlyOne && left_early <= earlyTwo
       left_message = "left early!"
     end
     hash["#{check_in_hour.strftime("%F")}"] = { check_in: check_in_hour, check_out: check_out_hour, late: late_message, early: left_message}

@@ -14,7 +14,7 @@ class Employee < ActiveRecord::Base
     #simulation of first payday
     #today = today - (today.day - 12).days
     payday_one = 15
-    payday_two = 27 #today.end_of_month.day
+    payday_two = today.end_of_month.day
     puts today.end_of_month.day
     if check_available? payday_one, payday_two
       hash[:available] = true
