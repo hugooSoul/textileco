@@ -12,17 +12,16 @@ class Employee < ActiveRecord::Base
     hash = Hash.new
     today = DateTime.now.to_date
     #simulation of first payday
-    #today = today - (today.day - 12).days
+    #today = today - (today.day - 13).days
     payday_one = 15
     payday_two = today.end_of_month.day
-    puts today.end_of_month.day
     if check_available? payday_one, payday_two
       hash[:available] = true
       if today.day < payday_one
         hash[:startDate] = today.beginning_of_month
         hash[:endDate] = today.beginning_of_month + 14.day
       else
-        hash[:startDate] = (today - (today.day - 1).days) + 15.days
+        hash[:startDate] = (today - (today.day - 1).day) + 15.day
         hash[:endDate] = today.end_of_month
       end
       hash[:id] = params[:id]
@@ -66,7 +65,7 @@ class Employee < ActiveRecord::Base
   def self.check_available? dayOne, dayTwo
     today = Time.now.beginning_of_day
     #simulation of first payday
-    #today = today - (today.day - 12).days
+    #today = today - (today.day - 13).days
     if !(dayOne - today.day == 3 || dayTwo - today.day == 3)
       return false
     else
